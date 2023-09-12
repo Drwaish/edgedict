@@ -399,7 +399,6 @@ class AudioPreprocessing(nn.Module):
 
 if __name__ == "__main__":
     import torchaudio
-    from .perturb import AudioAugmentor
 
     def chunks(lst, n):
         """Yield successive n-sized chunks from lst."""
@@ -407,7 +406,7 @@ if __name__ == "__main__":
             yield lst[i:i + n]
 
 
-    wav_file = '908-31957-0004.flac'
+    wav_file = '3729-6852-0035_1.flac'
     texts = 'SHALL I NEVER MISS HOME TALK AND BLESSING AND THE COMMON KISS THAT COMES     TO EACH IN TURN NOR COUNT IT STRANGE WHEN I LOOK UP TO DROP ON A NEW RANGE OF WALLS AND FLOORS ANOTHER HOME THAN THIS'.lower()
     data, sr = torchaudio.load(wav_file, normalization=True)
 
@@ -445,4 +444,4 @@ if __name__ == "__main__":
 
     mfcc = torch.cat(mfcc).T
     # print(mfcc.shape)
-    # print(mfcc[:, -10:]-ref_output[:, -10:])
+    print(mfcc[:, -10:]-ref_output[:, -10:])

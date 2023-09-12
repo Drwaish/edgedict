@@ -28,10 +28,10 @@ class StreamTransducerDecoder:
 class PytorchStreamDecoder(StreamTransducerDecoder):
     def __init__(self, FLAGS):
         self.FLAGS = FLAGS
-        logdir = os.path.join('logs', FLAGS.name)
+        logdir = os.path.join('logs', "rnnt-m-bpe")
 
         self.tokenizer = HuggingFaceTokenizer(
-            cache_dir='BPE-'+str(FLAGS.bpe_size), vocab_size=FLAGS.bpe_size)
+            cache_dir='BPE-'+str(2048), vocab_size=2048)
         
         assert self.tokenizer.tokenizer != None
 
@@ -42,7 +42,6 @@ class PytorchStreamDecoder(StreamTransducerDecoder):
             downsample=FLAGS.downsample, pad_to_divisible=False,
             T_mask=FLAGS.T_mask, T_num_mask=FLAGS.T_num_mask,
             F_mask=FLAGS.F_mask, F_num_mask=FLAGS.F_num_mask)
-
         model_path = os.path.join(logdir, 'models', FLAGS.model_name)
         if os.path.exists(model_path):
             checkpoint = torch.load(model_path, lambda storage, loc: storage)
@@ -51,10 +50,11 @@ class PytorchStreamDecoder(StreamTransducerDecoder):
             checkpoint = torch.load(model_path, lambda storage, loc: storage)
 
         transducer = Transducer(
-            vocab_embed_size=FLAGS.vocab_embed_size,
+            
+            vocab_embed_size=FLAGS.vocab_embed_size,   
             vocab_size=self.tokenizer.vocab_size,
             input_size=input_size,
-            enc_hidden_size=FLAGS.enc_hidden_size,
+            enc_hidden_size=FLAGS.enc_hidden_size, 
             enc_layers=FLAGS.enc_layers,
             enc_dropout=FLAGS.enc_dropout,
             enc_proj_size=FLAGS.enc_proj_size,

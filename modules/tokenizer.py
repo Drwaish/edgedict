@@ -73,7 +73,7 @@ class CharTokenizer():
             sentences.append(self.decode(tokens))
         return sentences
 
-from modules.tokenizers import CharBPETokenizer
+from rnnt.tokenizer import CharBPETokenizer
 
 
 class HuggingFaceTokenizer():

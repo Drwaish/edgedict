@@ -74,8 +74,11 @@ class HuggingFaceTokenizer:
         self.name = "%d-%s" % (vocab_size, max_length)
         self.tokenizer = None
 
-        vocab = os.path.join(self.cache_dir, self.name + '-vocab.json')
-        merges = os.path.join(self.cache_dir, self.name + '-merges.txt')
+        # vocab = os.path.join(self.cache_dir, self.name + '-vocab.json')
+        # merges = os.path.join(self.cache_dir, self.name + '-merges.txt')
+        
+        vocab = "BPE-2048/2048-None-vocab.json"
+        merges = "BPE-2048/2048-None-merges.txt"
         if os.path.exists(vocab) and os.path.exists(merges):
             self.tokenizer = CharBPETokenizer(vocab, merges, lowercase=True)
             print('Using cached HuggingFaceTokenizer')
