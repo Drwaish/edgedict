@@ -1,0 +1,34 @@
+In this repo 2 different pre-train model uses to convert your text into speech.
+
+For setting repo 
+-> Clone repo
+-> Copy logs folder after downloading from https://github.com/theblackcat102/edgedict/releases/tag/v0.1  
+-> logs contain two different pretrain model
+-> if user want to run 
+
+
+----> "english_medium.pt" for pre-recorded  use following commands on cli:
+--------> python stream.py --flagfile ./flagfiles/E6D2_LARGE_Batch.txt \
+        --name rnnt-m-bpe \
+        --model_name english_43_medium.pt   
+--------> python stream.py --flagfile ./flagfiles/E6D2_LARGE_Batch.txt \
+        --name rnnt-m-bpe \
+        --model_name english_43_medium.pt \
+        --path 3729-6852-0035.flac
+        
+      Above commands for recorded file
+ 
+---->    "zh_70_medium.pt" for pre-recorded  use following commands on cli:
+--------> python youtube_live.py --flagfile ./flagfiles/zh_E6D2_LARGE_Batch.txt \
+        --name rnnt-zh-bpe \
+        --model_name zh_70_medium.pt  \
+        --url https://www.youtube.com/watch\?v\=A4FbB8UhNRs
+       
+     If user want to convert directly from YouTube use above command.
+     
+You can run setup.py by providing path of downloaded model folders in command line argument.
+
+
+
+
+
